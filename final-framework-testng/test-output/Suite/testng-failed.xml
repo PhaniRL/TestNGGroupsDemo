@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
+  <test thread-count="5" name="Test(failed)">
+    <groups>
+      <run>
+        <include name="adminlogouttests"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="com.training.sanity.tests.RETC_015">
+        <methods>
+          <include name="GenerateNewPassword"/>
+          <include name="ValidEmailLoginTest"/>
+        </methods>
+      </class> <!-- com.training.sanity.tests.RETC_015 -->
+      <class name="com.training.sanity.tests.LoginTests">
+        <methods>
+          <include name="ValidEmailLoginTest"/>
+        </methods>
+      </class> <!-- com.training.sanity.tests.LoginTests -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
