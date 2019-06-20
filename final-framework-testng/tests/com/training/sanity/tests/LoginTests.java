@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -17,21 +18,17 @@ import com.training.utility.DriverNames;
 
 public class LoginTests {
 
-	private WebDriver driver;
+	public WebDriver driver;
 	private String baseUrl;
 	private LoginPOM loginPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
 
 	@BeforeClass
-	public static void setUpBeforeClass() throws IOException {
+	public void setUpBeforeClass() throws IOException {
 		properties = new Properties();
 		FileInputStream inStream = new FileInputStream("./resources/others.properties");
 		properties.load(inStream);
-	}
-
-	@BeforeMethod
-	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		loginPOM = new LoginPOM(driver); 
 		baseUrl = properties.getProperty("baseURL");
@@ -39,17 +36,37 @@ public class LoginTests {
 		// open the browser 
 		driver.get(baseUrl);
 	}
+
+	/*@BeforeMethod
+	public void setUp() throws Exception {
+		driver = DriverFactory.getDriver(DriverNames.CHROME);
+		loginPOM = new LoginPOM(driver); 
+		baseUrl = properties.getProperty("baseURL");
+		screenShot = new ScreenShot(driver); 
+		// open the browser 
+		driver.get(baseUrl);
+	}*/
 	
-	@AfterMethod
+	/*@AfterClass
 	public void tearDown() throws Exception {
 		Thread.sleep(1000);
 		driver.quit();
-	}
-	@Test
+	}*/
+	@Test(groups = {"profileupdatetests"})
 	public void validLoginTest() {
-		loginPOM.sendUserName("admin");
-		loginPOM.sendPassword("admin@123");
+		loginPOM.sendUserName("phani");
+		loginPOM.sendPassword("phani@123");
 		loginPOM.clickLoginBtn(); 
 		screenShot.captureScreenShot("First1");
 	}
+	@Test(groups = {"adminlogouttests"})
+	public void ValidEmailLoginTest() {
+		
+		loginPOM.sendUserName("phani.rajyalakshmi@gmail.com");
+		loginPOM.sendPassword("phani@123");
+		loginPOM.clickLoginBtn(); 
+		screenShot.captureScreenShot("First1");
+		
+	}
+	
 }
